@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.biojava3.core.sequence.DNASequence;
 
-import com.biospyder.rasl.oligoarray.Sequence;
+import com.biospyder.oligoarray2.Sequence;
 import com.google.common.base.Preconditions;
 
 /*

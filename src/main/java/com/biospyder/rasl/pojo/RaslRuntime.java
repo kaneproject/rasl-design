@@ -19,6 +19,7 @@ import com.google.common.base.Preconditions;
 /*
  * A Java POJO representing the collection of RASL runtime parameters
  */
+
 public class RaslRuntime {
 	private static Logger logger = LogManager
 			.getLogger(RaslRuntime.class);
@@ -76,6 +77,8 @@ public class RaslRuntime {
 	
 	// public constructor using command line arguments
 	
+	
+
 	private RaslRuntime() {
 		
 			// TODO set default values 

@@ -75,8 +75,8 @@ public class TestDataInitialization {
 		 System.out.println("Old way  ");
 		 try {
 		 String s = (new OligoArray2()).getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-         if(s.indexOf("oligodata.jar") == -1)
-             s = s + "oligodata.jar";
+         if(s.indexOf("OligoArray2.jar") == -1)
+             s = s + "OligoArray2.jar";
          URL url = new URL("jar:" + s + "!/");
          System.out.println("URL: " +url.toString());
          JarURLConnection jarurlconnection = (JarURLConnection)url.openConnection();

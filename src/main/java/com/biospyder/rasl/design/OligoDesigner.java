@@ -15,12 +15,12 @@ import org.apache.logging.log4j.Logger;
 import org.biojava3.core.sequence.DNASequence;
 import org.biojava3.core.sequence.io.FastaReaderHelper;
 
-import com.biospyder.rasl.common.CommonValues;
+import com.biospyder.oligoarray2.RaslDesign;
+import com.biospyder.oligoarray2.Sequence;
 import com.biospyder.rasl.common.Utilities;
 import com.biospyder.rasl.design.service.BlastService;
 import com.biospyder.rasl.design.service.RuntimeEnvironmentFactory;
 import com.biospyder.rasl.design.service.SequenceQueueService;
-import com.biospyder.rasl.oligoarray.Sequence;
 import com.biospyder.rasl.pojo.RaslRuntime;
 
 /*
@@ -76,13 +76,12 @@ public class OligoDesigner {
 	            runtime.setTempDirectory( new File(runtime.getWorkDirectory(), s7));
 	            if(!runtime.getTempDirectory().exists())
 	                runtime.getTempDirectory().mkdirs();
-	            Design adesign[] = new Design[runtime.getProcessors()];
+	            RaslDesign adesign[] = new RaslDesign[runtime.getProcessors()];
 	            
 	            boolean flag1 = false;
 	            for(int i = 0; i < runtime.getProcessors(); i++)
 	            {
-	            	adesign[i] = new Design(runtime, 
-	            			(new File(runtime.getTempDirectory(), (new Integer(i)).toString())).toString());
+	                adesign[i] = new RaslDesign(runtime, (new File(runtime.getTempDirectory(), (new Integer(i)).toString())).toString());
 	                adesign[i].start();
 	            }
 
@@ -111,10 +110,8 @@ public class OligoDesigner {
 	            
 	            //readBuff.close();
 	            System.out.println("No more sequence to dispatch");
-	            // place stop sequences into the queue
-	            for(int j = 0; j < 10*runtime.getProcessors(); j++)
-	            	
-	            	SequenceQueueService.INSTANCE.addSequence(new Sequence(CommonValues.STOP_SEQ));
+	            for(int j = 0; j < runtime.getProcessors(); j++)
+	            	SequenceQueueService.INSTANCE.addSequence(null);
 
 	            for(int k = 0; k < runtime.getProcessors(); k++)
 	                while(adesign[k].isAlive()) ;
